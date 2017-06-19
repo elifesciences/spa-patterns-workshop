@@ -1,0 +1,2 @@
+host_pattern_lab_http_port: 8080
+host_application_http_port: 8081
