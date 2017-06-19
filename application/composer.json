@@ -1,0 +1,9 @@
+{
+    "name": "some-company/application",
+    "description": "Demo application using patterns",
+    "license": "Unlicense",
+    "require": {
+        "php": "^7.0",
+        "silex/silex": "^2.1"
+    }
+}
