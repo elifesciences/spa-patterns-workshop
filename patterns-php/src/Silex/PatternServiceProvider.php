@@ -3,6 +3,7 @@
 namespace SomeCompany\Patterns\Silex;
 
 use Mustache_Engine;
+use Mustache_Loader_CascadingLoader;
 use Mustache_Loader_FilesystemLoader;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
@@ -18,7 +19,10 @@ final class PatternServiceProvider implements ServiceProviderInterface, Bootable
     {
         $app['patterns.mustache'] = function () {
             return new Mustache_Engine([
-                'loader' => new Mustache_Loader_FilesystemLoader(__DIR__.'/../..'),
+                'loader' => new Mustache_Loader_CascadingLoader([
+                    new Mustache_Loader_FilesystemLoader(__DIR__.'/../..'),
+                    new Mustache_Loader_FilesystemLoader(__DIR__.'/../../resources/templates'),
+                ]),
             ]);
         };
 

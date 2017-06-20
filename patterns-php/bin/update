@@ -17,6 +17,8 @@ done
 
 for TEMPLATE in `find "$SOURCE_PATH/_patterns" -name "*.mustache" -not -name "_*"`; do
   cp $TEMPLATE $OUTPUT_TEMPLATES_PATH
+  BASENAME=$( basename $TEMPLATE )
+  sed -i 's/{{>\s*\(atoms\|molecules\|organisms\)\-/{{> /g' "$OUTPUT_TEMPLATES_PATH/$BASENAME"
 done
 
 cp -r "$SOURCE_PATH/css" ${OUTPUT_PATH}
