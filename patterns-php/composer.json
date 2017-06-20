@@ -7,8 +7,17 @@
             "SomeCompany\\Patterns\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\SomeCompany\\Patterns\\": "./tests/src"
+        }
+    },
     "require": {
         "php": "^7.0",
         "mustache/mustache": "^2.5"
+    },
+    "require-dev": {
+        "justinrainbow/json-schema": "^5.0",
+        "phpunit/phpunit": "^6.0"
     }
 }

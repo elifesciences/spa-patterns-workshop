@@ -4,5 +4,7 @@ namespace SomeCompany\Patterns;
 
 interface Pattern extends CastsToArray
 {
-    public function getTemplateName() : string;
+    public static function getTemplatePath() : string;
+
+    public static function getSchemaPath() : string;
 }

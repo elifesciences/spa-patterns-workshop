@@ -20,6 +20,8 @@ patterns-generate:
         php core/builder.php --generate
     - require:
       - pkg: php-cli
+      - pkg: php-dom
+      - pkg: php-mbstring
       - cmd: patterns-styleguide
 
 patterns-install:
