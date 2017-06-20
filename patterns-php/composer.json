@@ -18,6 +18,7 @@
     },
     "require-dev": {
         "justinrainbow/json-schema": "^5.0",
+        "phpspec/prophecy": "^1.6",
         "phpunit/phpunit": "^6.0"
     }
 }
