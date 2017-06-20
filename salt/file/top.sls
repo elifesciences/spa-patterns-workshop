@@ -5,3 +5,4 @@ base:
     - php
     - php.composer
     - php.fpm
+    - some-company.application
