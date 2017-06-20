@@ -1,3 +1,17 @@
+patterns-public-dir:
+  file:
+    - directory
+    - name: /vagrant/patterns/public/
+
+patterns-styleguide:
+  cmd:
+    - run
+    - cwd: /vagrant/patterns
+    - name: |
+        cp --recursive ./core/styleguide ./public/
+    - require:
+      - file: patterns-public-dir
+
 patterns-generate:
   cmd:
     - run
@@ -6,6 +20,7 @@ patterns-generate:
         php core/builder.php --generate
     - require:
       - pkg: php-cli
+      - cmd: patterns-styleguide
 
 patterns-nginx:
   file:
