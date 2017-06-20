@@ -11,6 +11,6 @@ final class ScriptHandler
     {
         $filesystem = new Filesystem();
 
-        $filesystem->mirror(ComposerLocator::getPath('some-company/patterns').'/resources/css', __DIR__.'/../../web/patterns');
+        $filesystem->mirror(ComposerLocator::getPath('some-company/patterns').'/resources/css', __DIR__.'/../../web/patterns', null, ['delete' => true]);
     }
 }
