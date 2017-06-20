@@ -1,6 +1,7 @@
 {
   "siteHeader": {
     "title": "Some company",
+    "homeUrl": "#",
     "text": "Synergizing your virtual interfaces to disintermediate open-source e-commerce",
     "siteMenu": {
       "menu": {
