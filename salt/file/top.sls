@@ -6,3 +6,4 @@ base:
     - php.composer
     - php.fpm
     - some-company.application
+    - some-company.patterns

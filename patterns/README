@@ -1,5 +1,0 @@
-## Quickstart
-
-Running `./setup.sh` will generate the pattern library, and run the built-in PHP server to serve it up on port 8999.
-
-TODO: How to get pattern lab watch to run at the same time as the web server?
