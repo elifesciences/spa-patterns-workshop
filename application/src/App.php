@@ -10,7 +10,7 @@ $app = new Application(['debug' => true]);
 
 $app->register(new AssetServiceProvider());
 
-$app->register(new PatternServiceProvider());
+$app->register(new PatternServiceProvider(), ['patterns.mustache.assets_path' => '/patterns']);
 
 $app->register(new TwigServiceProvider(), [
     'twig.path' => __DIR__.'/../views',

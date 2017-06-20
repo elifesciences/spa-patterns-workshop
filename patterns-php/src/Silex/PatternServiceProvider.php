@@ -17,12 +17,17 @@ final class PatternServiceProvider implements ServiceProviderInterface, Bootable
 {
     public function register(Container $app)
     {
-        $app['patterns.mustache'] = function () {
+        $app['patterns.mustache.assets_path'] = '';
+
+        $app['patterns.mustache'] = function () use ($app) {
             return new Mustache_Engine([
                 'loader' => new Mustache_Loader_CascadingLoader([
                     new Mustache_Loader_FilesystemLoader(__DIR__.'/../..'),
                     new Mustache_Loader_FilesystemLoader(__DIR__.'/../../resources/templates'),
                 ]),
+                'helpers' => [
+                    'assetsPath' => $app['patterns.mustache.assets_path'],
+                ],
             ]);
         };
 

@@ -22,3 +22,4 @@ for TEMPLATE in `find "$SOURCE_PATH/_patterns" -name "*.mustache" -not -name "_*
 done
 
 cp -r "$SOURCE_PATH/css" ${OUTPUT_PATH}
+cp -r "$SOURCE_PATH/images" ${OUTPUT_PATH}
