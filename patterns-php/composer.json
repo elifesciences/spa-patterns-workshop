@@ -1,0 +1,14 @@
+{
+    "name": "some-company/patterns",
+    "description": "Implementation of the patterns in PHP",
+    "license": "Unlicense",
+    "autoload": {
+        "psr-4": {
+            "SomeCompany\\Patterns\\": "src"
+        }
+    },
+    "require": {
+        "php": "^7.0",
+        "mustache/mustache": "^2.5"
+    }
+}

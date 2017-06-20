@@ -2,8 +2,33 @@
     "name": "some-company/application",
     "description": "Demo application using patterns",
     "license": "Unlicense",
+    "autoload": {
+        "psr-4": {
+            "SomeCompany\\Application\\": "src"
+        }
+    },
     "require": {
         "php": "^7.0",
-        "silex/silex": "^2.1"
+        "mindplay/composer-locator": "^2.1",
+        "silex/silex": "^2.1",
+        "some-company/patterns": "*@dev",
+        "symfony/filesystem": "^3.3"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../patterns-php"
+        }
+    ],
+    "scripts": {
+        "application-scripts": [
+            "SomeCompany\\Application\\Composer\\ScriptHandler::installAssets"
+        ],
+        "post-install-cmd": [
+            "@application-scripts"
+        ],
+        "post-update-cmd": [
+            "@application-scripts"
+        ]
     }
 }

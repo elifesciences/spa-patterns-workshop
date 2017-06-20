@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -e
+
+SCRIPT_PATH=$( cd $(dirname $0) ; pwd -P )
+SOURCE_PATH="$SCRIPT_PATH/../../patterns/source"
+OUTPUT_PATH="$SCRIPT_PATH/../resources"
+OUTPUT_SCHEMAS_PATH="$OUTPUT_PATH/schemas"
+OUTPUT_TEMPLATES_PATH="$OUTPUT_PATH/templates"
+
+rm -rf ${OUTPUT_PATH}
+mkdir -p ${OUTPUT_SCHEMAS_PATH}
+mkdir -p ${OUTPUT_TEMPLATES_PATH}
+
+for SCHEMA in `find "$SOURCE_PATH/_patterns" -name "*.schema.json"`; do
+  cp $SCHEMA $OUTPUT_SCHEMAS_PATH
+done
+
+for TEMPLATE in `find "$SOURCE_PATH/_patterns" -name "*.mustache" -not -name "_*"`; do
+  cp $TEMPLATE $OUTPUT_TEMPLATES_PATH
+done
+
+cp -r "$SOURCE_PATH/css" ${OUTPUT_PATH}

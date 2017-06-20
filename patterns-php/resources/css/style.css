@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+}
+
+.hello-world {
+  background-color: cornsilk;
+  border: 1px solid goldenrod;
+  color: #333333;
+  padding: 1rem;
+}
+
+.hello-world__world_name {
+  font-style: italic;
+}
+
+.hello-world__world_name--jupiter {
+  color: firebrick;
+}
+
+.hello-world__world_name--neptune {
+  color: darkblue;
+}
+
