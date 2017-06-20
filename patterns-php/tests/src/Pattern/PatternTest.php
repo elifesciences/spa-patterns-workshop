@@ -25,7 +25,7 @@ abstract class PatternTest extends TestCase
     {
         $pattern = $this->createPattern();
 
-        $this->assertFileExists(__DIR__.'/../../../'.$pattern::getTemplatePath());
+        $this->assertFileExists(__DIR__.'/../../../'.$pattern->getTemplatePath());
     }
 
     /**
@@ -35,7 +35,7 @@ abstract class PatternTest extends TestCase
     {
         $pattern = $this->createPattern();
 
-        $this->assertFileExists(__DIR__.'/../../../'.$pattern::getSchemaPath());
+        $this->assertFileExists(__DIR__.'/../../../'.$pattern->getSchemaPath());
     }
 
     /**
@@ -52,7 +52,7 @@ abstract class PatternTest extends TestCase
             $json = '{}';
         }
 
-        $validator->check(json_decode($json), (object) ['$ref' => 'file://'.__DIR__.'/../../../'.$pattern::getSchemaPath()]);
+        $validator->check(json_decode($json), (object) ['$ref' => 'file://'.__DIR__.'/../../../'.$pattern->getSchemaPath()]);
 
         $message = '';
         foreach ($validator->getErrors() as $error) {

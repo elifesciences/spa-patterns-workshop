@@ -22,6 +22,6 @@ final class MustachePatternRenderer implements PatternRenderer
 
     private function renderPattern(Pattern $pattern) : string
     {
-        return $this->mustache->render($pattern::getTemplatePath(), $pattern);
+        return $this->mustache->render($pattern->getTemplatePath(), $pattern);
     }
 }

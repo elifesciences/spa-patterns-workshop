@@ -18,12 +18,12 @@ final class HelloWorld implements Pattern
         $this->worldName = $worldName;
     }
 
-    public static function getTemplatePath() : string
+    public function getTemplatePath() : string
     {
         return 'resources/templates/hello-world.mustache';
     }
 
-    public static function getSchemaPath() : string
+    public function getSchemaPath() : string
     {
         return 'resources/schemas/hello-world.schema.json';
     }
