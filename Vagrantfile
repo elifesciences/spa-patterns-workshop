@@ -18,7 +18,12 @@ Vagrant.configure(2) do |config|
     config.vm.network 'forwarded_port', guest: 8081, host: vagrant_config['host_application_http_port']
 
     config.vm.network 'private_network', type: 'dhcp'
-    config.vm.synced_folder '.', '/vagrant', type: 'nfs'
+
+    if vagrant_config['nfs_share']
+        config.vm.synced_folder '.', '/vagrant', type: 'nfs'
+    else
+        config.vm.synced_folder '.', '/vagrant'
+    end
 
     config.vm.provision :salt do |salt|
 
