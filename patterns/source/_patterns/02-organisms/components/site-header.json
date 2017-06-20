@@ -1,0 +1,20 @@
+{
+  "title": "Some company",
+  "text": "Synergizing your virtual interfaces to disintermediate open-source e-commerce",
+  "siteMenu": {
+    "menu": {
+      "links": [
+        {
+          "text": "page 1",
+          "url": "#",
+          "isCurrent": true
+        },
+        {
+          "text": "page 2",
+          "url": "#"
+        }
+      ],
+      "cssClasses": "menu--site-menu clearfix"
+    }
+  }
+}

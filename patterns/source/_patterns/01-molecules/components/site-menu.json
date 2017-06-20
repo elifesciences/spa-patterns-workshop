@@ -1,0 +1,16 @@
+{
+  "menu": {
+    "links": [
+      {
+        "text": "page 1",
+        "url": "#"
+      },
+      {
+        "text": "page 2",
+        "url": "#",
+        "isCurrent": true
+      }
+    ],
+    "cssClasses": "menu--site-menu clearfix"
+  }
+}
