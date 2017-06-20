@@ -12,7 +12,10 @@
         "mindplay/composer-locator": "^2.1",
         "silex/silex": "^2.1",
         "some-company/patterns": "*@dev",
-        "symfony/filesystem": "^3.3"
+        "symfony/asset": "^3.3",
+        "symfony/filesystem": "^3.3",
+        "symfony/twig-bridge": "^3.3",
+        "twig/twig": "^2.4"
     },
     "repositories": [
         {
