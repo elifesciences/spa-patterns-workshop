@@ -22,6 +22,15 @@ patterns-generate:
       - pkg: php-cli
       - cmd: patterns-styleguide
 
+patterns-install:
+  composer:
+    - installed
+    - user: ubuntu
+    - name: /vagrant/patterns
+    - composer_home: /home/ubuntu/.composer
+    - require:
+      - composer
+
 patterns-nginx:
   file:
     - managed

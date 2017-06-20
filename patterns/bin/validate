@@ -1,0 +1,70 @@
+#!/usr/bin/env php
+<?php
+
+use JsonSchema\Validator;
+use Symfony\Component\Finder\Finder;
+
+require_once __DIR__.'/../vendor/autoload.php';
+
+$patternDir = __DIR__.'/../source/_patterns';
+
+$schemas = (new Finder())->files()->in($patternDir)->name('*.schema.json');
+
+$validator = new Validator();
+
+$jsonSchema = (object) ['$ref' => 'file://'.__DIR__.'/../extras/json-schema-draft-04.json'];
+
+$exit = 0;
+
+foreach ($schemas as $schema) {
+    $validator->reset();
+
+    $schemaDecoded = json_decode($schema->getContents());
+
+    if (null === $schemaDecoded) {
+        $exit = 1;
+        echo 'Invalid JSON: '.json_last_error_msg().PHP_EOL;
+        continue;
+    }
+
+    $validator->validate($schemaDecoded, $jsonSchema);
+    if (!$validator->isValid()) {
+        $exit = 1;
+        echo 'Error in schema: '.$schema->getFilename().PHP_EOL;
+        foreach ($validator->getErrors() as $error) {
+            echo '  '.sprintf("[%s] %s", $error['property'], $error['message']).PHP_EOL;
+        }
+        continue;
+    }
+
+    $jsons = (new Finder())->files()->in($schema->getPath())->name('/^'.$schema->getBasename('.schema.json').'(~.+)?.json$/');
+
+    if (0 === count($jsons)) {
+        echo 'Warning: No JSON file for '.$schema->getFilename().PHP_EOL;
+
+        continue;
+    }
+
+    foreach ($jsons as $json) {
+        $validator->reset();
+
+        $jsonDecoded = json_decode($json->getContents());
+
+        if (null === $jsonDecoded) {
+            $exit = 1;
+            echo 'Invalid JSON: '.json_last_error_msg().PHP_EOL;
+            continue;
+        }
+
+        $validator->check($jsonDecoded, (object) ['$ref' => 'file://'.$schema->getPathname()]);
+        if (!$validator->isValid()) {
+            $exit = 1;
+            echo 'Error: '.$json->getFilename().PHP_EOL;
+            foreach ($validator->getErrors() as $error) {
+                echo '  '.sprintf("[%s] %s", $error['property'], $error['message']).PHP_EOL;
+            }
+        }
+    }
+}
+
+exit($exit);
