@@ -1,0 +1,15 @@
+<header class="site-header">
+
+  <div class="site-header__title_wrapper clearfix">
+    <h1 class="site-header__title">{{{title}}}</h1>
+    <a class="site-header__link" href="{{homeUrl}}"><span class="visuallyhidden">Go to the home page</span><img src="{{assetsPath}}/images/site-logo.png" alt="Some Company's logo" class="site-header__logo" /></a>
+  </div>
+
+  <p class="site-header__text">{{{text}}}</p>
+
+  {{#menu}}
+    {{> menu}}
+  {{/menu}}
+
+</header>
+

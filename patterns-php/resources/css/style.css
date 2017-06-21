@@ -1,23 +1,126 @@
+
+/* Normalise */
 body {
+  color: #131313;
+  font-family: sans-serif;
   margin: 0;
 }
 
-.hello-world {
-  background-color: cornsilk;
-  border: 1px solid goldenrod;
-  color: #333333;
+h1 {
+  margin: 0;
+}
+
+dl,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #131313;
+  font-family: sans-serif;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Utility */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+/* Patterns */
+
+.site-header {
   padding: 1rem;
 }
 
-.hello-world__world_name {
-  font-style: italic;
+.site-header__title_wrapper {
 }
 
-.hello-world__world_name--jupiter {
-  color: firebrick;
+.site-header__title {
+  color: #2E378F;
+  float: left;
+  font-size: 2rem;
+  padding-top: 0.75rem;
+  width: calc(100% - 100px);
 }
 
-.hello-world__world_name--neptune {
-  color: darkblue;
+.site-header__text {
+  border: 1px solid #E32D84;
+  border-radius: 50%;
+  color: #2E378F;
+  text-align: center;
+  padding: 1rem;
+}
+
+.site-header__link {
+  display: block;
+  float: right;
+}
+
+.site-header__logo {
+  height: auto;
+  width: 100px;
+}
+
+
+.menu {
+  border-top: 1px dashed #E32D84;
+  border-bottom: 1px dashed #E32D84;
+  padding: 0.5rem;
+}
+
+.menu__list > li {
+  float: left;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.menu-item--current:before {
+  content: ">";
+  display: inline-block;
+  padding-right: 0.25rem;
+  font-size: 75%;
+}
+
+.menu-item {
+  color: #2E378F;
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  color: #E32D84;
+  text-decoration: underline;
+  text-decoration-color: #E32D84;
 }
 

@@ -2,13 +2,15 @@
 
 <head>
 
-    <title>Demo</title>
+    <title>{{ title }}</title>
 
     <link rel="stylesheet" href="{{ asset('/patterns/css/style.css') }}">
 
 </head>
 
 <body>
+
+{{ render_pattern(siteHeader) }}
 
 {% block body %}
 

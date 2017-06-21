@@ -6,25 +6,25 @@ use SomeCompany\Patterns\ArrayAccessFromProperties;
 use SomeCompany\Patterns\ArrayFromProperties;
 use SomeCompany\Patterns\Pattern;
 
-final class HelloWorld implements Pattern
+final class Menu implements Pattern
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $worldName;
+    private $items;
 
-    public function __construct(string $worldName = null)
+    public function __construct(MenuItem ...$items)
     {
-        $this->worldName = $worldName;
+        $this->items = $items;
     }
 
     public function getTemplatePath() : string
     {
-        return 'resources/templates/hello-world.mustache';
+        return 'resources/templates/menu.mustache';
     }
 
     public function getSchemaPath() : string
     {
-        return 'resources/schemas/hello-world.schema.json';
+        return 'resources/schemas/menu.schema.json';
     }
 }
