@@ -17,7 +17,7 @@ for SCHEMA in `find "$SOURCE_PATH/_patterns" -name "*.schema.json"`; do
   sed -i 's/"$ref": "\.\.\/\.\.\/\(00-atoms\|01-molecules\|02-organisms\)\/components\//"$ref": "/g' "$OUTPUT_SCHEMAS_PATH/$BASENAME"
 done
 
-for TEMPLATE in `find "$SOURCE_PATH/_patterns" -name "*.mustache" -not -name "_*"`; do
+for TEMPLATE in `find "$SOURCE_PATH/_patterns" -name "*.mustache" -not -path "*00-meta*" -not -path "*04-pages*"`; do
   cp $TEMPLATE $OUTPUT_TEMPLATES_PATH
   BASENAME=$( basename $TEMPLATE )
   sed -i 's/{{>\s*\(atoms\|molecules\|organisms\)\-/{{> /g' "$OUTPUT_TEMPLATES_PATH/$BASENAME"
