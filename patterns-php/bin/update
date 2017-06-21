@@ -13,6 +13,8 @@ mkdir -p ${OUTPUT_TEMPLATES_PATH}
 
 for SCHEMA in `find "$SOURCE_PATH/_patterns" -name "*.schema.json"`; do
   cp $SCHEMA $OUTPUT_SCHEMAS_PATH
+  BASENAME=$( basename $SCHEMA )
+  sed -i 's/"$ref": "\.\.\/\.\.\/\(00-atoms\|01-molecules\|02-organisms\)\/components\//"$ref": "/g' "$OUTPUT_SCHEMAS_PATH/$BASENAME"
 done
 
 for TEMPLATE in `find "$SOURCE_PATH/_patterns" -name "*.mustache" -not -name "_*"`; do
