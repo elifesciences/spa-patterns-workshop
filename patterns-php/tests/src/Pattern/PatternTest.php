@@ -4,12 +4,14 @@ namespace tests\SomeCompany\Patterns\Pattern;
 
 use JsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
-use SomeCompany\Patterns\CastsToArray;
+use SomeCompany\Patterns\NormalisesValues;
 use SomeCompany\Patterns\Pattern;
 use Traversable;
 
 abstract class PatternTest extends TestCase
 {
+    use NormalisesValues;
+
     /**
      * @test
      */
@@ -71,7 +73,7 @@ abstract class PatternTest extends TestCase
         $data = $pattern->toArray();
 
         foreach ($data as $key => $value) {
-            $actual = $this->handleValue($pattern[$key]);
+            $actual = $this->normaliseValue($pattern[$key]);
 
             $this->assertSame($value, $actual);
         }
@@ -81,18 +83,8 @@ abstract class PatternTest extends TestCase
 
     abstract public function patternProvider() : Traversable;
 
-    private function handleValue($value)
+    public static function assertSame($expected, $actual, $message = '')
     {
-        if (is_array($value)) {
-            foreach ($value as $subKey => $subValue) {
-                $value[$subKey] = $this->handleValue($subValue);
-            }
-        }
-
-        if ($value instanceof CastsToArray) {
-            return $value->toArray();
-        }
-
-        return $value;
+        parent::assertSame(static::normaliseValue($expected), static::normaliseValue($actual), $message);
     }
 }

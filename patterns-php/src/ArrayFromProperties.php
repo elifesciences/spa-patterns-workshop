@@ -4,6 +4,8 @@ namespace SomeCompany\Patterns;
 
 trait ArrayFromProperties
 {
+    use NormalisesValues;
+
     final public function toArray() : array
     {
         $vars = [];
@@ -13,7 +15,7 @@ trait ArrayFromProperties
                 continue;
             }
 
-            $value = $this->handleValue($value);
+            $value = $this->normaliseValue($value);
 
             if (null !== $value && [] !== $value) {
                 $vars[$key] = $value;
@@ -21,20 +23,5 @@ trait ArrayFromProperties
         }
 
         return $vars;
-    }
-
-    private function handleValue($value)
-    {
-        if (is_array($value)) {
-            foreach ($value as $subKey => $subValue) {
-                $value[$subKey] = $this->handleValue($subValue);
-            }
-        }
-
-        if ($value instanceof CastsToArray) {
-            return $value->toArray();
-        }
-
-        return $value;
     }
 }
