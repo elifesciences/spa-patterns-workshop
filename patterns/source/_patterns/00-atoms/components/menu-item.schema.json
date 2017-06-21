@@ -2,25 +2,20 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "title": {
-      "type": "string",
-      "minLength": 1
-    },
-    "homeUrl": {
-      "type": "string",
-      "minLength": 1
-    },
     "text": {
       "type": "string",
       "minLength": 1
     },
-    "menu": {
-      "$ref": "../../01-molecules/components/menu.schema.json"
+    "url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "isCurrent": {
+      "type": "boolean"
     }
   },
   "required": [
-    "title",
-    "homeUrl",
-    "text"
+    "text",
+    "url"
   ]
 }

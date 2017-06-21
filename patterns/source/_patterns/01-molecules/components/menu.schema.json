@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "../../00-atoms/components/menu-item.schema.json"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "items"
+  ]
+}

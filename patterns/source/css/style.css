@@ -94,31 +94,31 @@ a:hover {
 }
 
 
-.site-menu {
+.menu {
   border-top: 1px dashed #E32D84;
   border-bottom: 1px dashed #E32D84;
   padding: 0.5rem;
 }
 
-.menu--site-menu .menu__item {
+.menu__list > li {
   float: left;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
 
-.menu--site-menu .menu__item--current:before {
+.menu-item--current:before {
   content: ">";
   display: inline-block;
   padding-right: 0.25rem;
   font-size: 75%;
 }
 
-.menu--site-menu .menu__link {
+.menu-item {
   color: #2E378F;
   text-decoration: none;
 }
 
-.menu--site-menu .menu__link:hover {
+.menu-item:hover {
   color: #E32D84;
   text-decoration: underline;
   text-decoration-color: #E32D84;

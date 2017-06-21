@@ -1,12 +1,13 @@
 {
-  "links": [
+  "items": [
     {
       "text": "page 1",
       "url": "#"
     },
     {
       "text": "page 2",
-      "url": "#"
+      "url": "#",
+      "isCurrent": true
     }
   ]
 }
