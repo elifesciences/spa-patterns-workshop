@@ -15,4 +15,4 @@ It may also have associated styles, images and JavaScript, found in the respecti
 
 # Validating patterns
 
-Before committing, ensure that the templates and data gobey the schema by running `./bin/validate`. 
+Before committing, ensure that the templates and data obey the schema by running `./bin/validate`. 
