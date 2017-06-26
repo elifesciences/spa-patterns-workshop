@@ -12,7 +12,7 @@ end
 
 Vagrant.configure(2) do |config|
 
-    config.vm.box = 'ubuntu/xenial64'
+    config.vm.box = 'bento/ubuntu-16.04'
 
     config.vm.network 'forwarded_port', guest: 8080, host: vagrant_config['host_pattern_lab_http_port']
     config.vm.network 'forwarded_port', guest: 8081, host: vagrant_config['host_application_http_port']

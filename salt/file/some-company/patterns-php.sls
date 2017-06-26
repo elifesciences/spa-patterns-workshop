@@ -1,8 +1,8 @@
 patterns-php-install:
   composer:
     - installed
-    - user: ubuntu
+    - user: vagrant
     - name: /vagrant/patterns-php
-    - composer_home: /home/ubuntu/.composer
+    - composer_home: /home/vagrant/.composer
     - require:
       - composer

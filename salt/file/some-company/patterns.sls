@@ -27,9 +27,9 @@ patterns-generate:
 patterns-install:
   composer:
     - installed
-    - user: ubuntu
+    - user: vagrant
     - name: /vagrant/patterns
-    - composer_home: /home/ubuntu/.composer
+    - composer_home: /home/vagrant/.composer
     - require:
       - composer
 

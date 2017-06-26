@@ -1,9 +1,9 @@
 application-install:
   composer:
     - installed
-    - user: ubuntu
+    - user: vagrant
     - name: /vagrant/application
-    - composer_home: /home/ubuntu/.composer
+    - composer_home: /home/vagrant/.composer
     - require:
       - composer
 

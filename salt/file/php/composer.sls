@@ -1,4 +1,4 @@
-{% set composer_home = '/home/ubuntu/.composer' %}
+{% set composer_home = '/home/vagrant/.composer' %}
 
 composer-home:
   environ:
@@ -45,8 +45,8 @@ composer:
   file:
     - directory
     - name: {{ composer_home }}
-    - user: ubuntu
-    - group: ubuntu
+    - user: vagrant
+    - group: vagrant
     - recurse:
       - user
       - group
