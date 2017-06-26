@@ -7,21 +7,33 @@ OUTPUT_PATH="$SCRIPT_PATH/../resources"
 OUTPUT_SCHEMAS_PATH="$OUTPUT_PATH/schemas"
 OUTPUT_TEMPLATES_PATH="$OUTPUT_PATH/templates"
 
+# Remove existing resources
 rm -rf ${OUTPUT_PATH}
 mkdir -p ${OUTPUT_SCHEMAS_PATH}
 mkdir -p ${OUTPUT_TEMPLATES_PATH}
 
+#
+# Normally you would clone the pattern library and run any build steps (eg SCSS), but since it's not in a VCS and there
+# are no build steps, we don't currently do that here.
+#
+
+echo 'Finding schemas'
 for SCHEMA in `find "$SOURCE_PATH/_patterns" -name "*.schema.json"`; do
   cp $SCHEMA $OUTPUT_SCHEMAS_PATH
   BASENAME=$( basename $SCHEMA )
   sed -i 's/"$ref": "\.\.\/\.\.\/\(00-atoms\|01-molecules\|02-organisms\)\/components\//"$ref": "/g' "$OUTPUT_SCHEMAS_PATH/$BASENAME"
 done
 
+echo 'Finding templates'
 for TEMPLATE in `find "$SOURCE_PATH/_patterns" -name "*.mustache" -not -path "*00-meta*" -not -path "*04-pages*"`; do
   cp $TEMPLATE $OUTPUT_TEMPLATES_PATH
   BASENAME=$( basename $TEMPLATE )
   sed -i 's/{{>\s*\(atoms\|molecules\|organisms\)\-/{{> /g' "$OUTPUT_TEMPLATES_PATH/$BASENAME"
 done
 
+echo 'Finding stylesheets'
 cp -r "$SOURCE_PATH/css" ${OUTPUT_PATH}
+echo 'Finding images'
 cp -r "$SOURCE_PATH/images" ${OUTPUT_PATH}
+
+echo 'Done'
