@@ -8,6 +8,8 @@ use SomeCompany\Patterns\Pattern\MenuItem;
 use SomeCompany\Patterns\Pattern\SiteHeader;
 use SomeCompany\Patterns\Silex\PatternServiceProvider;
 
+// Set up the application.
+
 $app = new Application(['debug' => true]);
 
 $app->register(new AssetServiceProvider());
@@ -18,7 +20,9 @@ $app->register(new TwigServiceProvider(), [
     'twig.path' => __DIR__.'/../views',
 ]);
 
-$app['site_header'] = function () use ($app) {
+// Make the site header pattern globally available.
+
+$app->extend('twig', function (Twig_Environment $twig, Application $app) {
     $request = $app['request_stack']->getCurrentRequest();
 
     $menu = [
@@ -26,7 +30,7 @@ $app['site_header'] = function () use ($app) {
         $app['url_generator']->generate('second') => 'Second page',
     ];
 
-    return new SiteHeader(
+    $siteHeader = new SiteHeader(
         'Some company',
         $app['url_generator']->generate('home'),
         'Synergizing your virtual interfaces to disintermediate open-source e-commerce',
@@ -34,13 +38,13 @@ $app['site_header'] = function () use ($app) {
             return new MenuItem($text, $url, $request->getPathInfo() === $url);
         }, array_values($menu), array_keys($menu)))
     );
-};
 
-$app->extend('twig', function (Twig_Environment $twig, Application $app) {
-    $twig->addGlobal('siteHeader', $app['site_header']);
+    $twig->addGlobal('siteHeader', $siteHeader);
 
     return $twig;
 });
+
+// Define a couple of pages.
 
 $app->get('/', function () use ($app) {
     return $app['twig']->render('page.html.twig', [
