@@ -14,5 +14,6 @@ final class ScriptHandler
         // Makes stylesheets and images publically available.
         $filesystem->mirror(ComposerLocator::getPath('some-company/patterns').'/resources/css', __DIR__.'/../../web/patterns/css', null, ['delete' => true]);
         $filesystem->mirror(ComposerLocator::getPath('some-company/patterns').'/resources/images', __DIR__.'/../../web/patterns/images', null, ['delete' => true]);
+        $filesystem->mirror(ComposerLocator::getPath('some-company/patterns').'/resources/js', __DIR__.'/../../web/patterns/js', null, ['delete' => true]);
     }
 }

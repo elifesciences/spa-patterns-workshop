@@ -35,5 +35,6 @@ echo 'Finding stylesheets'
 cp -r "$SOURCE_PATH/css" ${OUTPUT_PATH}
 echo 'Finding images'
 cp -r "$SOURCE_PATH/images" ${OUTPUT_PATH}
-
+echo 'Finding JavaScript'
+cp -r "$SOURCE_PATH/js" ${OUTPUT_PATH}
 echo 'Done'
