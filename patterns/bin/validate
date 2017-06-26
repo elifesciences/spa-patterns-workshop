@@ -21,26 +21,33 @@ foreach ($schemas as $schema) {
 
     $schemaDecoded = json_decode($schema->getContents());
 
+    echo $schema->getFilename().PHP_EOL;
+
     if (null === $schemaDecoded) {
         $exit = 1;
-        echo 'Invalid JSON: '.json_last_error_msg().PHP_EOL;
-        continue;
+        echo '  ✗ Invalid JSON'.PHP_EOL;
+        echo '      '.json_last_error_msg().PHP_EOL;
+        break; // Bail out to avoid nesting problems
+    } else {
+        echo '  ✓ Valid JSON'.PHP_EOL;
     }
 
     $validator->validate($schemaDecoded, $jsonSchema);
     if (!$validator->isValid()) {
         $exit = 1;
-        echo 'Error in schema: '.$schema->getFilename().PHP_EOL;
+        echo '  ✗ Invalid JSON schema'.PHP_EOL;
         foreach ($validator->getErrors() as $error) {
-            echo '  '.sprintf("[%s] %s", $error['property'], $error['message']).PHP_EOL;
+            echo '      '.sprintf("[%s] %s", $error['property'], $error['message']).PHP_EOL;
         }
-        continue;
+        break; // Bail out to avoid nesting problems
+    } else {
+        echo '  ✓ Valid JSON schema'.PHP_EOL;
     }
 
     $jsons = (new Finder())->files()->in($schema->getPath())->name('/^'.$schema->getBasename('.schema.json').'(~.+)?.json$/');
 
     if (0 === count($jsons)) {
-        echo 'Warning: No JSON file for '.$schema->getFilename().PHP_EOL;
+        echo '    No JSON file found'.PHP_EOL;
 
         continue;
     }
@@ -50,19 +57,26 @@ foreach ($schemas as $schema) {
 
         $jsonDecoded = json_decode($json->getContents());
 
+        echo $json->getFilename().PHP_EOL;
+
         if (null === $jsonDecoded) {
             $exit = 1;
-            echo 'Invalid JSON: '.json_last_error_msg().PHP_EOL;
+            echo '  ✗ Invalid JSON'.PHP_EOL;
+            echo '      '.json_last_error_msg().PHP_EOL;
             continue;
+        } else {
+            echo '  ✓ Valid JSON'.PHP_EOL;
         }
 
         $validator->check($jsonDecoded, (object) ['$ref' => 'file://'.$schema->getPathname()]);
         if (!$validator->isValid()) {
             $exit = 1;
-            echo 'Error: '.$json->getFilename().PHP_EOL;
+            echo '  ✗ Does not match schema'.PHP_EOL;
             foreach ($validator->getErrors() as $error) {
-                echo '  '.sprintf("[%s] %s", $error['property'], $error['message']).PHP_EOL;
+                echo '      '.sprintf("[%s] %s", $error['property'], $error['message']).PHP_EOL;
             }
+        } else {
+            echo '  ✓ Matches schema'.PHP_EOL;
         }
     }
 }
