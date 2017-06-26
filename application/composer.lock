@@ -278,17 +278,27 @@
             "dist": {
                 "type": "path",
                 "url": "../patterns-php",
-                "reference": "61f6a77a812c9830b8ec11d15f03ddb4d1c78e37",
+                "reference": "2efb21b7fcf812cb858028aec33cf61b50b326eb",
                 "shasum": null
             },
             "require": {
                 "mustache/mustache": "^2.5",
                 "php": "^7.0"
             },
+            "require-dev": {
+                "justinrainbow/json-schema": "^5.0",
+                "phpspec/prophecy": "^1.6",
+                "phpunit/phpunit": "^6.0"
+            },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "SomeCompany\\Patterns\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "tests\\SomeCompany\\Patterns\\": "./tests/src"
                 }
             },
             "license": [
